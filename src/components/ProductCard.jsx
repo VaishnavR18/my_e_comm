@@ -37,12 +37,12 @@ const ProductCard = ({ product, index }) => {
       custom={index}
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
     >
-      <Link to={`/products/${product.id}`} className="block">
+      <Link to={`/products/${product._id}`} className="block">
         <div className="relative h-64 overflow-hidden">
           <img  
             className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" 
             alt={product.name}
-           src="https://images.unsplash.com/photo-1677693972403-db681288b5da" />
+           src={product.imageUrl} />
           
           <div className="absolute top-2 right-2">
             <Button

@@ -1,14 +1,27 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShoppingBag, Truck, Shield, Clock } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import ProductCard from '../components/ProductCard';
-import { products } from '../data/products';
+import { fetchProducts } from '../api/products';
 
 const HomePage = () => {
-  // Featured products (show only 4)
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const data = await fetchProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error('Failed to load products:', error);
+      }
+    };
+    loadProducts();
+  }, []);
+
+  // Featured products (show only first 4)
   const featuredProducts = products.slice(0, 4);
 
   const containerVariants = {
@@ -29,17 +42,21 @@ const HomePage = () => {
       transition: { duration: 0.5 },
     },
   };
-    <motion.div
-      variants={itemVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <h1 className="text-3xl font-bold">Welcome to LuxeMarket</h1>
-    </motion.div>
 
   return (
     <div className="pt-16">
       {/* Hero Section */}
+      <motion.div
+        variants={itemVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="flex justify-center items-center text-center px-4 mt-10 mb-8"
+      >
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 text-center px-4 mt-12 mb-8">
+          Welcome to LuxeMarket
+        </h1>
+      </motion.div>
       <section className="hero-gradient text-white py-20 md:py-32">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
@@ -49,16 +66,17 @@ const HomePage = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-black">
                 Discover Premium Products
               </h1>
-              <p className="text-lg md:text-xl mb-8 text-purple-100">
+              <p className="text-lg md:text-xl mb-8 text-black">
                 Elevate your lifestyle with our curated collection of high-quality products.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
-                  className="bg-white text-purple-700 hover:bg-purple-100"
+                  className="bg-white p-6 rounded-xl shadow-md text-center text-black"
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
                   asChild
                 >
                   <Link to="/products">Shop Now</Link>
@@ -66,7 +84,7 @@ const HomePage = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white/10"
+                  className="border-white text-black hover:bg-white/10"
                 >
                   Learn More
                 </Button>
@@ -79,10 +97,11 @@ const HomePage = () => {
               transition={{ duration: 0.7, delay: 0.2 }}
             >
               <div className="relative">
-                <img  
-                  className="rounded-lg shadow-2xl mx-auto animate-float" 
+                <img
+                  className="rounded-lg shadow-2xl mx-auto animate-float"
                   alt="Premium products showcase"
-                 src="https://images.unsplash.com/photo-1637590931735-edb2b9303ba7" />
+                  src="https://images.unsplash.com/photo-1637590931735-edb2b9303ba7"
+                />
                 <div className="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg">
                   <div className="text-purple-600 font-bold text-xl">New Arrivals</div>
                   <div className="text-gray-600">Check out our latest collection</div>
@@ -185,7 +204,7 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             {featuredProducts.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
+              <ProductCard key={product._id} product={product} index={index} />
             ))}
           </motion.div>
         </div>

@@ -64,7 +64,7 @@ const CartPage = () => {
                 <AnimatePresence>
                   {items.map((item) => (
                     <motion.div
-                      key={item.id}
+                      key={item._id}
                       variants={itemVariants}
                       exit="exit"
                       className="p-4 border-b last:border-b-0 hover:bg-gray-50"
@@ -76,12 +76,12 @@ const CartPage = () => {
                               <img  
                                 className="w-full h-full object-cover" 
                                 alt={item.name}
-                               src="https://images.unsplash.com/photo-1695561115495-23adc519079d" />
+                                src={item.imageUrl} />
                             </div>
                             <div>
                               <h3 className="font-medium text-gray-800">
                                 <Link
-                                  to={`/products/${item.id}`}
+                                  to={`/products/${item._id}`}
                                   className="hover:text-primary transition-colors"
                                 >
                                   {item.name}

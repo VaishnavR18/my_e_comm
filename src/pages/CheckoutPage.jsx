@@ -66,6 +66,11 @@ const CheckoutPage = () => {
       });
       return false;
     }
+    if (cardNumber.length < 16) {
+      toast({ title: "Invalid card", description: "Card number must be 16 digits", variant: "destructive" });
+        return false;
+    }
+
     // Add more specific card validation logic here if needed
     return true;
   };

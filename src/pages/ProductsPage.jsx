@@ -6,40 +6,70 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Badge } from '../components/ui/badge';
 import ProductCard from '../components/ProductCard';
-import { products } from '../data/products';
+import { fetchProducts } from '../api/products'; 
 
 const ProductsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [priceRange, setPriceRange] = useState({ min: 0, max: 300 });
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [allProducts, setAllProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const categories = [...new Set(products.map((product) => product.category))];
+
+
+  const categories = [...new Set(allProducts.map((product) => product.category).filter(Boolean))];
+  
+  useEffect(() => {
+  async function loadProducts() {
+    try {
+      setLoading(true);
+      const data = await fetchProducts();
+      setAllProducts(data);
+      setFilteredProducts(data);
+      setError(null);
+    } catch (err) {
+      console.error('Load products failed:', err);
+      setError('Failed to load products');
+    } finally {
+      setLoading(false);
+    }
+  }
+  loadProducts();
+}, []);
+
 
   useEffect(() => {
-    let result = products;
+  const handleResize = () => setWindowWidth(window.innerWidth);
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
 
-    // Filter by search query
-    if (searchQuery) {
-      result = result.filter((product) =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
 
-    // Filter by category
-    if (selectedCategory) {
-      result = result.filter((product) => product.category === selectedCategory);
-    }
+  useEffect(() => {
+  let result = allProducts;
 
-    // Filter by price range
-    result = result.filter(
-      (product) => product.price >= priceRange.min && product.price <= priceRange.max
+  if (searchQuery) {
+    result = result.filter((product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (product.description && product.description.toLowerCase().includes(searchQuery.toLowerCase()))
     );
+  }
 
-    setFilteredProducts(result);
-  }, [searchQuery, selectedCategory, priceRange]);
+  if (selectedCategory) {
+    result = result.filter((product) => product.category === selectedCategory);
+  }
+
+  result = result.filter(
+    (product) => product.price >= priceRange.min && product.price <= priceRange.max
+  );
+
+  setFilteredProducts(result);
+}, [searchQuery, selectedCategory, priceRange, allProducts]);
+
 
   const handleClearFilters = () => {
     setSearchQuery('');
@@ -87,7 +117,7 @@ const ProductsPage = () => {
 
           {/* Filters Sidebar */}
           <AnimatePresence>
-            {(isFilterOpen || window.innerWidth >= 1024) && (
+            {(isFilterOpen || windowWidth >= 1024) && (
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -231,47 +261,66 @@ const ProductsPage = () => {
               </motion.div>
             )}
           </AnimatePresence>
-
-          {/* Products Grid */}
+          
+           {/* Products Grid & States */}
           <div className="lg:w-3/4">
-            <div className="mb-6 flex justify-between items-center">
-              <p className="text-gray-600">
-                Showing {filteredProducts.length} of {products.length} products
-              </p>
-              <div className="flex items-center">
-                <span className="text-sm text-gray-600 mr-2">Sort by:</span>
-                <select className="border rounded-md p-1 text-sm">
-                  <option>Featured</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                  <option>Newest</option>
-                </select>
+            {/* Loading */}
+            {loading && (
+              <div className="text-center py-12">
+                <p className="text-gray-600">Loading products...</p>
               </div>
-            </div>
+            )}
 
-            {filteredProducts.length > 0 ? (
-              <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                {filteredProducts.map((product, index) => (
-                  <ProductCard key={product.id} product={product} index={index} />
-                ))}
-              </motion.div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-center py-12"
-              >
-                <h3 className="text-xl font-medium mb-2">No products found</h3>
-                <p className="text-gray-600 mb-6">
-                  Try adjusting your search or filter criteria
-                </p>
-                <Button onClick={handleClearFilters}>Clear All Filters</Button>
-              </motion.div>
+            {/* Error */}
+            {error && (
+              <div className="text-center py-12">
+                <p className="text-red-500">{error}</p>
+              </div>
+            )}
+
+            {/* Products */}
+            {!loading && !error && (
+              <>
+                <div className="mb-6 flex justify-between items-center">
+                  <p className="text-gray-600">
+                    Showing {filteredProducts.length} of {allProducts.length} products
+                  </p>
+                  <div className="flex items-center">
+                    <span className="text-sm text-gray-600 mr-2">Sort by:</span>
+                    <select className="border rounded-md p-1 text-sm">
+                      <option>Featured</option>
+                      <option>Price: Low to High</option>
+                      <option>Price: High to Low</option>
+                      <option>Newest</option>
+                    </select>
+                  </div>
+                </div>
+
+                {filteredProducts.length > 0 ? (
+                  <motion.div
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {filteredProducts.map((product, index) => (
+                      <ProductCard key={product._id} product={product} index={index} />
+                    ))}
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-center py-12"
+                  >
+                    <h3 className="text-xl font-medium mb-2">No products found</h3>
+                    <p className="text-gray-600 mb-6">
+                      Try adjusting your search or filter criteria
+                    </p>
+                    <Button onClick={handleClearFilters}>Clear All Filters</Button>
+                  </motion.div>
+                )}
+              </>
             )}
           </div>
         </div>

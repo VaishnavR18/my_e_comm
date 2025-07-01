@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
@@ -11,7 +13,11 @@ const app = express();
 
 // Middleware
 app.use(express.json()); // Parse JSON bodies
-app.use(cors());         // Enable CORS
+app.use(cors({
+  origin: 'http://localhost:3000',    // your React app URL
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'],   // ✅ allow Authorization header
+}));        
 
 // Routes
 const authRoutes = require('./routes/auth');
