@@ -3,8 +3,7 @@ import React from 'react';
 const CheckoutSteps = ({ currentStep }) => {
   const steps = [
     { id: 1, name: 'Shipping' },
-    { id: 2, name: 'Payment' },
-    { id: 3, name: 'Review' },
+    { id: 2, name: 'Review' },
   ];
 
   return (

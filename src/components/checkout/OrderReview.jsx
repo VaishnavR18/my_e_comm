@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CreditCard } from 'lucide-react';
+import { Wallet } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useCart } from '../../contexts/CartContext';
 
@@ -29,8 +29,8 @@ const OrderReview = ({ formData, handleSubmit, onPrevStep, isSubmitting }) => {
       <div className="mb-6">
         <h3 className="font-medium mb-2">Payment Method</h3>
         <div className="bg-gray-50 p-4 rounded-md flex items-center">
-          <CreditCard className="h-5 w-5 text-gray-500 mr-2" />
-          <span>Credit Card ending in {formData.cardNumber.slice(-4)}</span>
+          <Wallet className="h-5 w-5 text-gray-500 mr-2" />
+          <span>Cash on Delivery</span>
         </div>
       </div>
       
@@ -43,7 +43,7 @@ const OrderReview = ({ formData, handleSubmit, onPrevStep, isSubmitting }) => {
                 <span className="font-medium">{item.quantity}x</span>
                 <span className="ml-2">{item.name}</span>
               </div>
-              <span>${(item.price * item.quantity).toFixed(2)}</span>
+              <span>₹{(item.price * item.quantity).toFixed(2)}</span>
             </div>
           ))}
         </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
@@ -14,6 +13,8 @@ import NotFoundPage from './pages/NotFoundPage';
 import AdminPanelPage from './pages/AdminPanelPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import MyOrdersPage from './pages/MyOrdersPage';
+import AdminOrdersPage from './pages/AdminOrdersPage';
 
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
@@ -38,7 +39,9 @@ function AppRoutes() {
         <Route path="/products/:id" element={<ProductDetailPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
+        <Route path="/my-orders" element={<ProtectedRoute><MyOrdersPage /></ProtectedRoute>} />
         <Route path="/admin/products" element={<AdminRoute><AdminPanelPage /></AdminRoute>} />
+        <Route path="/admin/orders" element={<AdminRoute><AdminOrdersPage /></AdminRoute>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFoundPage />} />

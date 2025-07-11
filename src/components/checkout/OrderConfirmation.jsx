@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import { Button } from '../ui/button';
@@ -7,6 +7,12 @@ import { useNavigate } from 'react-router-dom';
 const OrderConfirmation = () => {
   const navigate = useNavigate();
   const orderNumber = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+
+  // Optional: auto redirect after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => navigate('/'), 5000);
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
   return (
     <motion.div
@@ -19,14 +25,11 @@ const OrderConfirmation = () => {
         <CheckCircle className="h-12 w-12 text-green-600" />
       </div>
       <h2 className="text-2xl font-bold mb-2">Order Confirmed!</h2>
-      <p className="text-gray-600 mb-8">
+      <p className="text-gray-600 mb-4">
         Thank you for your purchase. Your order has been received and is being processed.
       </p>
-      <p className="text-gray-600 mb-8">
-        Order #: {orderNumber}
-      </p>
-      <p className="text-gray-600 mb-8">
-        You will be redirected to the home page in a few seconds...
+      <p className="text-gray-600 mb-6">
+        <strong>Order #:</strong> {orderNumber}
       </p>
       <Button onClick={() => navigate('/')}>
         Return to Home

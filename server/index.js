@@ -4,6 +4,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const orderRoutes = require('./routes/order');
+
 
 // Load environment variables from .env file
 dotenv.config();
@@ -12,6 +14,7 @@ dotenv.config();
 const app = express();
 
 // Middleware
+
 app.use(express.json()); // Parse JSON bodies
 app.use(cors({
   origin: 'http://localhost:3000',    // your React app URL
@@ -25,6 +28,7 @@ const productRoutes = require('./routes/productRoutess');
 
 app.use('/api/auth', authRoutes);         // Auth routes (register, login)
 app.use('/api/products', productRoutes);  // Product routes (CRUD)
+app.use('/api/orders', orderRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI)

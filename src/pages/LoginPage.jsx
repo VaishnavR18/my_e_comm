@@ -14,9 +14,8 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const data = await login(email, password);
-      localStorage.setItem('token', data.token); // ✅ store JWT
-      loginUser(data.user); // optional: store user info in context
-      navigate('/admin'); // or wherever you want
+      loginUser(data); 
+      navigate('/admin'); 
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     }

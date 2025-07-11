@@ -103,7 +103,7 @@ const ShippingForm = ({ formData, handleChange, onNextStep }) => {
       </div>
       <div className="flex justify-end">
         <Button onClick={onNextStep} className="flex items-center">
-          Continue to Payment <ChevronRight className="ml-2 h-4 w-4" />
+          Continue to Review <ChevronRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
     </motion.div>
