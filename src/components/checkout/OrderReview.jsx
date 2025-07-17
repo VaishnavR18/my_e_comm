@@ -43,7 +43,7 @@ const OrderReview = ({ formData, handleSubmit, onPrevStep, isSubmitting }) => {
                 <span className="font-medium">{item.quantity}x</span>
                 <span className="ml-2">{item.name}</span>
               </div>
-              <span>₹{(item.price * item.quantity).toFixed(2)}</span>
+              <span>${(item.price * item.quantity).toFixed(2)}</span>
             </div>
           ))}
         </div>

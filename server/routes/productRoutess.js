@@ -4,8 +4,10 @@ const Product = require('../models/Product');
 const verifyToken = require('../middleware/authMiddleware');
 const isAdmin = require('../middleware/isAdmin');
 
+// Allowed fields to update
+const allowedFields = ['name', 'price', 'imageUrl', 'description', 'category', 'colors'];
 
-// GET /api/products/:id
+// GET /api/products/:id - Get product by ID
 router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -18,21 +20,22 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Get all products (public)
+// GET /api/products - Get all products
 router.get('/', async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);
   } catch (err) {
+    console.error('Error fetching products:', err);
     res.status(500).json({ error: 'Server error' });
   }
 });
 
-// Create a product (admin only)
+// POST /api/products - Create product (Admin only)
 router.post('/', verifyToken, isAdmin, async (req, res) => {
-  const { name, price, imageUrl, description, category } = req.body;
+  const { name, price, imageUrl, description, category, colors } = req.body;
   try {
-    const newProduct = new Product({ name, price, imageUrl, description, category });
+    const newProduct = new Product({ name, price, imageUrl, description, category, colors });
     await newProduct.save();
     res.status(201).json(newProduct);
   } catch (err) {
@@ -41,26 +44,35 @@ router.post('/', verifyToken, isAdmin, async (req, res) => {
   }
 });
 
-// Update a product by ID (admin only)
+// PUT /api/products/:id - Update product dynamically (Admin only)
 router.put('/:id', verifyToken, isAdmin, async (req, res) => {
   const { id } = req.params;
-  const { name, price, imageUrl, description, category } = req.body;
+  const updates = {};
+
+  // Only allow updating certain fields
+  for (const key of Object.keys(req.body)) {
+    if (allowedFields.includes(key)) {
+      updates[key] = req.body[key];
+    }
+  }
 
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
-      { name, price, imageUrl, description, category },
+      updates,
       { new: true, runValidators: true }
     );
+
     if (!updatedProduct) return res.status(404).json({ error: 'Product not found' });
 
     res.json(updatedProduct);
   } catch (err) {
+    console.error('Error updating product:', err);
     res.status(400).json({ error: 'Invalid product data or ID' });
   }
 });
 
-// Delete a product by ID (admin only)
+// DELETE /api/products/:id - Delete product (Admin only)
 router.delete('/:id', verifyToken, isAdmin, async (req, res) => {
   const { id } = req.params;
 
@@ -70,6 +82,7 @@ router.delete('/:id', verifyToken, isAdmin, async (req, res) => {
 
     res.json({ message: 'Product deleted successfully' });
   } catch (err) {
+    console.error('Error deleting product:', err);
     res.status(400).json({ error: 'Invalid product ID' });
   }
 });

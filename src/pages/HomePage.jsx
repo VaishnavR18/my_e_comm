@@ -5,6 +5,7 @@ import { ArrowRight, ShoppingBag, Truck, Shield, Clock } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import ProductCard from '../components/ProductCard';
 import { fetchProducts } from '../api/products';
+import '../styles/global.css';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -21,7 +22,6 @@ const HomePage = () => {
     loadProducts();
   }, []);
 
-  // Featured products (show only first 4)
   const featuredProducts = products.slice(0, 4);
 
   const containerVariants = {
@@ -45,7 +45,7 @@ const HomePage = () => {
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
+      {/* Welcome Text */}
       <motion.div
         variants={itemVariants}
         initial="hidden"
@@ -57,6 +57,8 @@ const HomePage = () => {
           Welcome to LuxeMarket
         </h1>
       </motion.div>
+
+      {/* Hero Section */}
       <section className="hero-gradient text-white py-20 md:py-32">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
@@ -73,14 +75,9 @@ const HomePage = () => {
                 Elevate your lifestyle with our curated collection of high-quality products.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-white p-6 rounded-xl shadow-md text-center text-black"
-                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                  asChild
-                >
-                  <Link to="/products">Shop Now</Link>
-                </Button>
+                <Link to="/products">
+                  <button className="btn-gradient">Shop Now</button>
+                </Link>
                 <Button
                   size="lg"
                   variant="outline"
@@ -90,6 +87,7 @@ const HomePage = () => {
                 </Button>
               </div>
             </motion.div>
+
             <motion.div
               className="md:w-1/2"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -153,12 +151,11 @@ const HomePage = () => {
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                className="bg-white p-6 rounded-xl shadow-md text-center"
+                className="bg-white p-6 rounded-xl shadow-md text-center card-hover"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
                 <div className="flex justify-center mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
@@ -204,7 +201,9 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             {featuredProducts.map((product, index) => (
-              <ProductCard key={product._id} product={product} index={index} />
+              <div className="card-hover" key={product._id}>
+                <ProductCard product={product} index={index} />
+              </div>
             ))}
           </motion.div>
         </div>
