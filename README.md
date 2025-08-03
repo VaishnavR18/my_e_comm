@@ -80,7 +80,7 @@ Build my_e_comm from the source and install dependencies:
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/YourUsername/my_e_comm
+git clone https://github.com/VaishnavR18/my_e_comm
 ```
 
 2. **Navigate to the project directory:**
