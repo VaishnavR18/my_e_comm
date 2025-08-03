@@ -29,6 +29,9 @@ const productRoutes = require('./routes/productRoutess');
 app.use('/api/auth', authRoutes);         // Auth routes (register, login)
 app.use('/api/products', productRoutes);  // Product routes (CRUD)
 app.use('/api/orders', orderRoutes);
+app.use('/api/exchange', require('./routes/exchange'));
+app.use('/api/installation', require('./routes/installation'));
+
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI)

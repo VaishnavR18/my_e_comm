@@ -34,9 +34,8 @@ const ProductDetailPage = () => {
       try {
         const fetchedProduct = await fetchProductById(id);
 
-        // ✅ If no images array but has imageUrl, create images array
-        if (!fetchedProduct.images?.length && fetchedProduct.imageUrl) {
-          fetchedProduct.images = [fetchedProduct.imageUrl];
+        if (!fetchedProduct.images?.length && fetchedProduct.imageUrls.length > 0) {
+          fetchedProduct.images = [fetchedProduct.imageUrls];
         }
 
         setProduct(fetchedProduct);
@@ -202,11 +201,11 @@ const ProductDetailPage = () => {
               <div className="flex items-center">
                 {product.discount > 0 && (
                   <span className="text-gray-500 line-through mr-2">
-                    ${(product.price / (1 - product.discount / 100)).toFixed(2)}
+                    ₹{(product.price / (1 - product.discount / 100)).toLocaleString('en-IN')}
                   </span>
                 )}
                 <span className="text-3xl font-bold text-gray-900">
-                  ${product.price.toFixed(2)}
+                  ₹{product.price.toLocaleString('en-IN')}
                 </span>
               </div>
               <Badge variant="outline" className="mt-2 bg-green-50 text-green-700 border-green-200">
@@ -227,29 +226,12 @@ const ProductDetailPage = () => {
               </div>
             )}
 
-            {product.colors?.length > 0 && (
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-2">Available Colors</h3>
-                <div className="flex gap-2">
-                  {product.colors.map((color, index) => (
-                    <Badge key={index} variant="outline" className="px-3 py-1">
-                      {color}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            )}
-
             <div className="flex items-center mb-6">
               <span className="text-gray-700 mr-4">Quantity:</span>
               <div className="flex items-center border rounded-md">
-                <button onClick={() => handleQuantityChange(-1)} disabled={quantity <= 1} className="px-3 py-1 border-r hover:bg-gray-100 disabled:opacity-50">
-                  -
-                </button>
+                <button onClick={() => handleQuantityChange(-1)} disabled={quantity <= 1} className="px-3 py-1 border-r hover:bg-gray-100 disabled:opacity-50">-</button>
                 <span className="px-4 py-1">{quantity}</span>
-                <button onClick={() => handleQuantityChange(1)} disabled={quantity >= product.stock} className="px-3 py-1 border-l hover:bg-gray-100 disabled:opacity-50">
-                  +
-                </button>
+                <button onClick={() => handleQuantityChange(1)} disabled={quantity >= product.stock} className="px-3 py-1 border-l hover:bg-gray-100 disabled:opacity-50">+</button>
               </div>
             </div>
 
@@ -268,7 +250,7 @@ const ProductDetailPage = () => {
                   <Truck className="h-5 w-5 text-primary mr-2" />
                   <div className="text-sm">
                     <p className="font-medium">Free Shipping</p>
-                    <p className="text-gray-500">On orders over $50</p>
+                    <p className="text-gray-500">On orders over ₹500</p>
                   </div>
                 </CardContent>
               </Card>

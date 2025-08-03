@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -28,6 +27,10 @@ const ProductCard = ({ product, index }) => {
     addItem(product);
   };
 
+  const originalPrice = product.discount
+    ? (product.price / (1 - product.discount / 100)).toFixed(0)
+    : null;
+
   return (
     <motion.div
       className="product-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md"
@@ -38,12 +41,15 @@ const ProductCard = ({ product, index }) => {
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
     >
       <Link to={`/products/${product._id}`} className="block">
+        {/* Product Image */}
         <div className="relative h-64 overflow-hidden">
-          <img  
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" 
+          <img
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
             alt={product.name}
-           src={product.imageUrl} />
-          
+            src={product.imageUrls?.[0] || '/placeholder.jpg'}
+          />
+
+          {/* Favorite Icon */}
           <div className="absolute top-2 right-2">
             <Button
               variant="ghost"
@@ -53,47 +59,53 @@ const ProductCard = ({ product, index }) => {
               <Heart className="h-5 w-5 text-gray-600 dark:text-gray-300" />
             </Button>
           </div>
-          
+
+          {/* Discount Badge */}
           {product.discount > 0 && (
             <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
               {product.discount}% OFF
             </div>
           )}
         </div>
-        
+
+        {/* Product Details */}
         <div className="p-4">
           <div className="flex justify-between items-start">
             <div>
               <h3 className="font-semibold text-lg mb-1 text-gray-800 dark:text-white">
                 {product.name}
               </h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                {product.category}
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {product.brand} • {product.capacity}
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                Backup: {product.backupTime || 'N/A'} | Warranty: {product.warranty || '1 year'}
               </p>
             </div>
+
             <div className="flex items-center">
               {product.discount > 0 && (
                 <span className="text-sm text-gray-500 dark:text-gray-400 line-through mr-2">
-                  ${(product.price / (1 - product.discount / 100)).toFixed(2)}
+                  ₹{originalPrice}
                 </span>
               )}
               <span className="font-bold text-lg text-gray-900 dark:text-white">
-                ${product.price.toFixed(2)}
+                ₹{product.price.toFixed(0)}
               </span>
             </div>
           </div>
-          
+
+          {/* Rating and Add Button */}
           <div className="mt-4 flex justify-between items-center">
             <div className="flex items-center">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className={`w-4 h-4 ${
-                      i < product.rating
-                        ? 'text-yellow-400'
-                        : 'text-gray-300 dark:text-gray-600'
-                    }`}
+                    className={`w-4 h-4 ${i < Math.round(product.rating)
+                      ? 'text-yellow-400'
+                      : 'text-gray-300 dark:text-gray-600'
+                      }`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -105,12 +117,8 @@ const ProductCard = ({ product, index }) => {
                 ({product.reviewCount})
               </span>
             </div>
-            
-            <Button
-              size="sm"
-              className="rounded-full"
-              onClick={handleAddToCart}
-            >
+
+            <Button size="sm" className="rounded-full" onClick={handleAddToCart}>
               <ShoppingCart className="h-4 w-4 mr-1" />
               Add
             </Button>

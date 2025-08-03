@@ -15,7 +15,7 @@ const MyOrdersPage = () => {
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">My Orders</h1>
+      <h1 className="text-2xl font-bold mb-4 mt-20 text-center">My Orders</h1>
       {orders.length === 0 ? (
         <p>No orders found.</p>
       ) : (

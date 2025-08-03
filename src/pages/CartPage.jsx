@@ -33,6 +33,9 @@ const CartPage = () => {
     },
   };
 
+  const tax = totalPrice * 0.18;
+  const grandTotal = totalPrice + tax;
+
   return (
     <div className="pt-24 pb-16">
       <div className="container mx-auto px-4">
@@ -72,10 +75,11 @@ const CartPage = () => {
                         <div className="col-span-6">
                           <div className="flex items-center">
                             <div className="w-16 h-16 rounded-md overflow-hidden mr-4">
-                              <img  
-                                className="w-full h-full object-cover" 
+                              <img
+                                className="w-full h-full object-cover"
                                 alt={item.name}
-                                src={item.imageUrl} />
+                                src={item.imageUrl}
+                              />
                             </div>
                             <div>
                               <h3 className="font-medium text-gray-800">
@@ -92,7 +96,7 @@ const CartPage = () => {
                         </div>
 
                         <div className="col-span-2 text-center">
-                          ${item.price.toFixed(2)}
+                          ₹{item.price.toLocaleString('en-IN')}
                         </div>
 
                         <div className="col-span-2">
@@ -115,7 +119,7 @@ const CartPage = () => {
 
                         <div className="col-span-2 text-right flex items-center justify-end">
                           <span className="font-medium mr-4">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            ₹{(item.price * item.quantity).toLocaleString('en-IN')}
                           </span>
                           <button
                             onClick={() => deleteItem(item)}
@@ -163,39 +167,33 @@ const CartPage = () => {
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Subtotal ({totalItems} items)</span>
-                    <span className="font-medium">${totalPrice.toFixed(2)}</span>
+                    <span className="font-medium">₹{totalPrice.toLocaleString('en-IN')}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Shipping</span>
                     <span className="font-medium">Free</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Tax</span>
-                    <span className="font-medium">${(totalPrice * 0.1).toFixed(2)}</span>
+                    <span className="text-gray-600">Tax (18%)</span>
+                    <span className="font-medium">₹{tax.toLocaleString('en-IN')}</span>
                   </div>
                   <div className="border-t pt-4 flex justify-between">
                     <span className="font-bold">Total</span>
-                    <span className="font-bold text-xl">
-                      ${(totalPrice + totalPrice * 0.1).toFixed(2)}
-                    </span>
+                    <span className="font-bold text-xl">₹{grandTotal.toLocaleString('en-IN')}</span>
                   </div>
                 </div>
 
-                <Button
-                  className="w-full"
-                  size="lg"
-                  onClick={() => navigate('/checkout')}
-                >
+                <Button className="w-full" size="lg" onClick={() => navigate('/checkout')}>
                   Proceed to Checkout
                 </Button>
 
                 <div className="mt-6 text-center text-sm text-gray-500">
                   <p>We accept:</p>
                   <div className="flex justify-center space-x-2 mt-2">
-                    <div className="w-10 h-6 bg-gray-200 rounded"></div>
-                    <div className="w-10 h-6 bg-gray-200 rounded"></div>
-                    <div className="w-10 h-6 bg-gray-200 rounded"></div>
-                    <div className="w-10 h-6 bg-gray-200 rounded"></div>
+                    <div className="w-10 h-6 bg-gray-200 rounded" />
+                    <div className="w-10 h-6 bg-gray-200 rounded" />
+                    <div className="w-10 h-6 bg-gray-200 rounded" />
+                    <div className="w-10 h-6 bg-gray-200 rounded" />
                   </div>
                 </div>
               </div>

@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import Product from './models/Product.js';
-import { products } from './data/products.js'; // use your dummy data
+const mongoose = require('mongoose');
+const Product = require('./models/Product');
+const { products } = require('./data/products.js'); // adjust path if needed
 
 async function seed() {
   await mongoose.connect('mongodb+srv://vaishnavtejar18:vaishnav18@cluster0.csmp2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');

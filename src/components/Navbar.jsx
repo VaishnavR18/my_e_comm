@@ -31,17 +31,20 @@ const Navbar = () => {
     navigate('/');
   };
 
-  // build nav links
+  // Navigation links
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Products', path: '/products' },
+    { name: 'Exchange Calculator', path: '/exchange' },
+    { name: 'UPS Recommender', path: '/ups-recommender' },
+    { name: 'Recycling', path: '/recycling' },
+    { name: 'Installation', path: '/installations' },
   ];
 
   if (user?.role === 'admin') {
     navLinks.push({ name: 'Admin Panel', path: '/admin/products' });
     navLinks.push({ name: 'Orders', path: '/admin/orders' });
-  }
-  else if (token) {
+  } else if (token) {
     navLinks.push({ name: 'My Orders', path: '/my-orders' });
   }
 
@@ -64,7 +67,7 @@ const Navbar = () => {
           </motion.div>
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop navigation */}
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
             <Link
@@ -79,7 +82,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Right: Login / Cart / Hamburger */}
+        {/* Right-side actions */}
         <div className="flex items-center space-x-3">
           {token ? (
             <>
@@ -99,7 +102,7 @@ const Navbar = () => {
             </>
           )}
 
-          {/* Cart */}
+          {/* Cart Icon */}
           <Link to="/cart" className="relative">
             <Button variant="ghost" size="icon">
               <ShoppingCart className="h-5 w-5" />
@@ -115,14 +118,14 @@ const Navbar = () => {
             )}
           </Link>
 
-          {/* Mobile hamburger */}
+          {/* Hamburger menu icon */}
           <Button variant="ghost" size="icon" className="md:hidden" onClick={toggleMenu}>
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
       </div>
 
-      {/* Mobile nav */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div

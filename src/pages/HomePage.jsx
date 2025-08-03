@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, ShoppingBag, Truck, Shield, Clock } from 'lucide-react';
+import { ArrowRight, Shield, Truck, Clock, RefreshCcw, Zap, Lightbulb } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import ProductCard from '../components/ProductCard';
 import { fetchProducts } from '../api/products';
@@ -28,19 +28,13 @@ const HomePage = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   return (
@@ -53,8 +47,8 @@ const HomePage = () => {
         viewport={{ once: true }}
         className="flex justify-center items-center text-center px-4 mt-10 mb-8"
       >
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 text-center px-4 mt-12 mb-8">
-          Welcome to LuxeMarket
+        <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mt-10">
+          Welcome to UPS360
         </h1>
       </motion.div>
 
@@ -68,23 +62,19 @@ const HomePage = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-black">
-                Discover Premium Products
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black">
+                Power Up with the Right UPS
               </h1>
-              <p className="text-lg md:text-xl mb-8 text-black">
-                Elevate your lifestyle with our curated collection of high-quality products.
+              <p className="text-lg mb-8 text-black">
+                Find the best UPS for your needs. Install it. Exchange the old. Recycle it responsibly.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/products">
-                  <button className="btn-gradient">Shop Now</button>
+                  <button className="btn-gradient">Browse UPS</button>
                 </Link>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-black hover:bg-white/10"
-                >
-                  Learn More
-                </Button>
+                <Link to="/ups-recommender">
+                  <Button variant="outline" className="text-black border-black">Smart Recommender</Button>
+                </Link>
               </div>
             </motion.div>
 
@@ -97,12 +87,12 @@ const HomePage = () => {
               <div className="relative">
                 <img
                   className="rounded-lg shadow-2xl mx-auto animate-float"
-                  alt="Premium products showcase"
-                  src="https://images.unsplash.com/photo-1637590931735-edb2b9303ba7"
+                  alt="UPS showcase"
+                  src="https://www.apc.com/shop/in/en/imgs/ups-category-page-hero.png"
                 />
                 <div className="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg">
-                  <div className="text-purple-600 font-bold text-xl">New Arrivals</div>
-                  <div className="text-gray-600">Check out our latest collection</div>
+                  <div className="text-purple-600 font-bold text-xl">UPS Experts</div>
+                  <div className="text-gray-600">All services in one place</div>
                 </div>
               </div>
             </motion.div>
@@ -120,46 +110,32 @@ const HomePage = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-4">Why Choose Us</h2>
+            <h2 className="text-3xl font-bold mb-4">Our UPS Services</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              We're committed to providing the best shopping experience with premium products and exceptional service.
+              We make UPS buying and servicing easy and eco-friendly.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              {
-                icon: <ShoppingBag className="h-10 w-10 text-purple-600" />,
-                title: 'Premium Products',
-                description: 'Curated selection of high-quality products for your lifestyle.',
-              },
-              {
-                icon: <Truck className="h-10 w-10 text-purple-600" />,
-                title: 'Fast Delivery',
-                description: 'Quick and reliable shipping to your doorstep.',
-              },
-              {
-                icon: <Shield className="h-10 w-10 text-purple-600" />,
-                title: 'Secure Payments',
-                description: 'Your transactions are protected with advanced security.',
-              },
-              {
-                icon: <Clock className="h-10 w-10 text-purple-600" />,
-                title: '24/7 Support',
-                description: 'Our customer service team is always ready to help.',
-              },
-            ].map((feature, index) => (
+              { icon: <Zap className="h-10 w-10 text-purple-600" />, title: "Smart Recommender", desc: "Get the best UPS based on your power needs." },
+              { icon: <Truck className="h-10 w-10 text-purple-600" />, title: "Quick Installation", desc: "Book expert installation service at your home." },
+              { icon: <RefreshCcw className="h-10 w-10 text-purple-600" />, title: "Exchange UPS", desc: "Get value for your old UPS and upgrade easily." },
+              { icon: <Shield className="h-10 w-10 text-purple-600" />, title: "Safe & Reliable", desc: "We offer tested, branded, and guaranteed UPS systems." },
+              { icon: <Lightbulb className="h-10 w-10 text-purple-600" />, title: "Knowledge Hub", desc: "Learn how to maintain and choose UPS wisely." },
+              { icon: <Clock className="h-10 w-10 text-purple-600" />, title: "24/7 Support", desc: "We're here to help with every step of your UPS journey." },
+            ].map((item, i) => (
               <motion.div
-                key={index}
-                className="bg-white p-6 rounded-xl shadow-md text-center card-hover"
+                key={i}
+                className="bg-white p-6 rounded-xl shadow-md text-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="flex justify-center mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <div className="flex justify-center mb-4">{item.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-gray-600">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -176,8 +152,8 @@ const HomePage = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold">Featured Products</h2>
-              <p className="text-gray-600">Discover our most popular items</p>
+              <h2 className="text-3xl font-bold">Featured UPS Models</h2>
+              <p className="text-gray-600">Explore our top-selling units</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -209,7 +185,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Newsletter Section */}
+      {/* Newsletter */}
       <section className="py-16 bg-purple-900 text-white">
         <div className="container mx-auto px-4">
           <motion.div
@@ -219,10 +195,8 @@ const HomePage = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-4">Join Our Newsletter</h2>
-            <p className="text-purple-200 mb-8">
-              Subscribe to get updates on new products, special offers, and exclusive discounts.
-            </p>
+            <h2 className="text-3xl font-bold mb-4">Join Our UPS Newsletter</h2>
+            <p className="text-purple-200 mb-8">Stay updated on new UPS models, recycling rewards, and tips.</p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"

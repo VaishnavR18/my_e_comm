@@ -5,7 +5,11 @@ const verifyToken = require('../middleware/authMiddleware');
 const isAdmin = require('../middleware/isAdmin');
 
 // Allowed fields to update
-const allowedFields = ['name', 'price', 'imageUrl', 'description', 'category', 'colors'];
+const allowedFields = [
+  'name', 'brand', 'description', 'price', 'capacity', 'backupTime',
+  'imageUrls', 'stock', 'discount', 'rating', 'reviewCount',
+  'features', 'warranty', 'category'
+];
 
 // GET /api/products/:id - Get product by ID
 router.get('/:id', async (req, res) => {
@@ -33,9 +37,8 @@ router.get('/', async (req, res) => {
 
 // POST /api/products - Create product (Admin only)
 router.post('/', verifyToken, isAdmin, async (req, res) => {
-  const { name, price, imageUrl, description, category, colors } = req.body;
   try {
-    const newProduct = new Product({ name, price, imageUrl, description, category, colors });
+    const newProduct = new Product(req.body);
     await newProduct.save();
     res.status(201).json(newProduct);
   } catch (err) {
@@ -46,10 +49,7 @@ router.post('/', verifyToken, isAdmin, async (req, res) => {
 
 // PUT /api/products/:id - Update product dynamically (Admin only)
 router.put('/:id', verifyToken, isAdmin, async (req, res) => {
-  const { id } = req.params;
   const updates = {};
-
-  // Only allow updating certain fields
   for (const key of Object.keys(req.body)) {
     if (allowedFields.includes(key)) {
       updates[key] = req.body[key];
@@ -58,12 +58,12 @@ router.put('/:id', verifyToken, isAdmin, async (req, res) => {
 
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
-      id,
+      req.params.id,
       updates,
       { new: true, runValidators: true }
     );
-
-    if (!updatedProduct) return res.status(404).json({ error: 'Product not found' });
+    if (!updatedProduct)
+      return res.status(404).json({ error: 'Product not found' });
 
     res.json(updatedProduct);
   } catch (err) {
@@ -74,11 +74,10 @@ router.put('/:id', verifyToken, isAdmin, async (req, res) => {
 
 // DELETE /api/products/:id - Delete product (Admin only)
 router.delete('/:id', verifyToken, isAdmin, async (req, res) => {
-  const { id } = req.params;
-
   try {
-    const deletedProduct = await Product.findByIdAndDelete(id);
-    if (!deletedProduct) return res.status(404).json({ error: 'Product not found' });
+    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+    if (!deletedProduct)
+      return res.status(404).json({ error: 'Product not found' });
 
     res.json({ message: 'Product deleted successfully' });
   } catch (err) {
