@@ -104,9 +104,6 @@ Using npm:
 npm start
 ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
 ### Testing
 
 My_e_comm uses the Jest framework test framework. Run the test suite with:
