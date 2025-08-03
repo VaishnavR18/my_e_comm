@@ -88,7 +88,7 @@ const HomePage = () => {
                 <img
                   className="rounded-lg shadow-2xl mx-auto animate-float"
                   alt="UPS showcase"
-                  src="https://www.apc.com/shop/in/en/imgs/ups-category-page-hero.png"
+                  src="https://cdn.sketchfab.com/urls/3d-model-render.jpg"
                 />
                 <div className="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg">
                   <div className="text-purple-600 font-bold text-xl">UPS Experts</div>
