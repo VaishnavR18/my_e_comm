@@ -3,9 +3,7 @@ const router = express.Router();
 const verifyToken = require('../middleware/authMiddleware');
 const Installation = require('../models/Installation');
 
-// @desc    Submit a new installation request
-// @route   POST /api/installation
-// @access  Private
+
 router.post('/', verifyToken, async (req, res) => {
   try {
     const { name, phone, address, notes } = req.body;

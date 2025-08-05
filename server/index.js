@@ -19,7 +19,7 @@ app.use(express.json()); // Parse JSON bodies
 app.use(cors({
   origin: 'http://localhost:3000',    // your React app URL
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'],   // ✅ allow Authorization header
+  allowedHeaders: ['Content-Type', 'Authorization'],   //  allow Authorization header
 }));        
 
 // Routes

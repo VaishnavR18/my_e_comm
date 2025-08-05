@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const sendMail = require('../utils/sendMail');  // ✅ import mail utility
+const sendMail = require('../utils/sendMail');  
 
 const router = express.Router();
 
@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
     const newUser = new User({ name, email, password: hashedPassword });
     await newUser.save();
 
-    // ✉ Send welcome email
+    // Send welcome email
     await sendMail({
       to: email,
       subject: 'Welcome to LuxeMarket!',

@@ -66,7 +66,7 @@ router.put('/:orderId/status', verifyToken, isAdmin, async (req, res) => {
     // Find user who placed the order
     const user = await User.findById(order.user);
 
-    // ✉ Send status update email
+    // Send status update email
     await sendMail({
       to: user.email,
       subject: `Update: Your order #${order._id} is now ${order.status}`,
