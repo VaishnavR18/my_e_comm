@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
   });
 
   const loginUser = (data) => {
-    // Defensive: ensure we never save undefined
+  
     setToken(data.token ?? '');
     setUser(data.user ?? null);
     localStorage.setItem('token', data.token ?? '');

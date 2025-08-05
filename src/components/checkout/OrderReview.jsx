@@ -12,8 +12,7 @@ const OrderReview = ({ formData, handleSubmit, onPrevStep, isSubmitting }) => {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
-      transition={{ duration: 0.3 }}
-    >
+      transition={{ duration: 0.3 }}>
       <h2 className="text-xl font-bold mb-6">Review Your Order</h2>
       
       <div className="mb-6">
@@ -56,8 +55,7 @@ const OrderReview = ({ formData, handleSubmit, onPrevStep, isSubmitting }) => {
         <Button 
           onClick={handleSubmit} 
           disabled={isSubmitting}
-          className="flex items-center"
-        >
+          className="flex items-center">
           {isSubmitting ? 'Processing...' : 'Place Order'}
         </Button>
       </div>

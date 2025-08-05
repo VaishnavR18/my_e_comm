@@ -10,8 +10,7 @@ const ShippingForm = ({ formData, handleChange, onNextStep }) => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
-      transition={{ duration: 0.3 }}
-    >
+      transition={{ duration: 0.3 }}>
       <h2 className="text-xl font-bold mb-6">Shipping Information</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div>
@@ -23,8 +22,7 @@ const ShippingForm = ({ formData, handleChange, onNextStep }) => {
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
-            required
-          />
+            required/>
         </div>
         <div>
           <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
@@ -35,8 +33,7 @@ const ShippingForm = ({ formData, handleChange, onNextStep }) => {
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
-            required
-          />
+            required/>
         </div>
         <div className="md:col-span-2">
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
@@ -48,8 +45,7 @@ const ShippingForm = ({ formData, handleChange, onNextStep }) => {
             type="email"
             value={formData.email}
             onChange={handleChange}
-            required
-          />
+            required/>
         </div>
         <div className="md:col-span-2">
           <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
@@ -60,8 +56,7 @@ const ShippingForm = ({ formData, handleChange, onNextStep }) => {
             name="address"
             value={formData.address}
             onChange={handleChange}
-            required
-          />
+            required/>
         </div>
         <div>
           <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
@@ -72,8 +67,7 @@ const ShippingForm = ({ formData, handleChange, onNextStep }) => {
             name="city"
             value={formData.city}
             onChange={handleChange}
-            required
-          />
+            required/>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -84,8 +78,7 @@ const ShippingForm = ({ formData, handleChange, onNextStep }) => {
               id="state"
               name="state"
               value={formData.state}
-              onChange={handleChange}
-            />
+              onChange={handleChange}/>
           </div>
           <div>
             <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700 mb-1">
@@ -96,8 +89,7 @@ const ShippingForm = ({ formData, handleChange, onNextStep }) => {
               name="zipCode"
               value={formData.zipCode}
               onChange={handleChange}
-              required
-            />
+              required/>
           </div>
         </div>
       </div>

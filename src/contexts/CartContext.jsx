@@ -179,8 +179,7 @@ export function CartProvider({ children }) {
         removeItem,
         deleteItem,
         clearCart,
-      }}
-    >
+      }}>
       {children}
     </CartContext.Provider>
   );
