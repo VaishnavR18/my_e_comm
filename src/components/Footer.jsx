@@ -17,11 +17,11 @@ const Footer = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
-              LuxeMarket
+            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">
+              PowerPlus UPS
             </span>
             <p className="mt-4 text-gray-400">
-              Discover premium products with an immersive shopping experience.
+              Empowering homes and businesses with reliable UPS solutions, eco-friendly services, and expert support.
             </p>
             <div className="flex space-x-4 mt-6">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-gray-400 hover:text-white transition-colors">
@@ -45,58 +45,26 @@ const Footer = () => {
           >
             <span className="text-lg font-semibold">Quick Links</span>
             <ul className="mt-4 space-y-2">
-              <li>
-                <Link to="/" className="text-gray-400 hover:text-white transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/products" className="text-gray-400 hover:text-white transition-colors">
-                  Products
-                </Link>
-              </li>
-              <li>
-                <Link to="/cart" className="text-gray-400 hover:text-white transition-colors">
-                  Cart
-                </Link>
-              </li>
+              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/products" className="text-gray-400 hover:text-white transition-colors">Products</Link></li>
+              <li><Link to="/cart" className="text-gray-400 hover:text-white transition-colors">Cart</Link></li>
+              <li><Link to="/my-orders" className="text-gray-400 hover:text-white transition-colors">My Orders</Link></li>
             </ul>
           </motion.div>
 
-          {/* Categories */}
+          {/* Services */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <span className="text-lg font-semibold">Categories</span>
+            <span className="text-lg font-semibold">Services</span>
             <ul className="mt-4 space-y-2">
-              <li>
-                <a href="https://example.com/electronics" className="text-gray-400 hover:text-white transition-colors">
-                  Electronics
-                </a>
-              </li>
-              <li>
-                <a href="https://example.com/fashion" className="text-gray-400 hover:text-white transition-colors">
-                  Fashion
-                </a>
-              </li>
-              <li>
-                <a href="https://example.com/home-living" className="text-gray-400 hover:text-white transition-colors">
-                  Home & Living
-                </a>
-              </li>
-              <li>
-                <a href="https://example.com/beauty" className="text-gray-400 hover:text-white transition-colors">
-                  Beauty
-                </a>
-              </li>
-              <li>
-                <a href="https://example.com/accessories" className="text-gray-400 hover:text-white transition-colors">
-                  Accessories
-                </a>
-              </li>
+              <li><Link to="/ups-recommender" className="text-gray-400 hover:text-white transition-colors">UPS Recommender</Link></li>
+              <li><Link to="/exchange" className="text-gray-400 hover:text-white transition-colors">Exchange Calculator</Link></li>
+              <li><Link to="/installations" className="text-gray-400 hover:text-white transition-colors">Installation Request</Link></li>
+              <li><Link to="/recycling" className="text-gray-400 hover:text-white transition-colors">UPS Recycling</Link></li>
             </ul>
           </motion.div>
 
@@ -111,15 +79,15 @@ const Footer = () => {
             <address className="mt-4 not-italic space-y-4 text-gray-400">
               <div className="flex items-start">
                 <MapPin className="h-5 w-5 text-gray-400 mr-2 mt-0.5" />
-                <span>123 Commerce Street, Shopping District, 10001</span>
+                <span>456 Power Lane, Energy City, 110022</span>
               </div>
               <div className="flex items-center">
                 <Phone className="h-5 w-5 text-gray-400 mr-2" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 98765 43210</span>
               </div>
               <div className="flex items-center">
                 <Mail className="h-5 w-5 text-gray-400 mr-2" />
-                <span>support@luxemarket.com</span>
+                <span>support@powerplusups.com</span>
               </div>
             </address>
           </motion.div>
@@ -127,7 +95,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-10 pt-6">
           <p className="text-center text-gray-500 text-sm">
-            © {currentYear} LuxeMarket. All rights reserved.
+            © {currentYear} PowerPlus UPS. All rights reserved.
           </p>
         </div>
       </div>
