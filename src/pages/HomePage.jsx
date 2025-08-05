@@ -45,8 +45,7 @@ const HomePage = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="flex justify-center items-center text-center px-4 mt-10 mb-8"
-      >
+        className="flex justify-center items-center text-center px-4 mt-10 mb-8">
         <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mt-10">
           Welcome to UPS360
         </h1>
@@ -60,8 +59,7 @@ const HomePage = () => {
               className="md:w-1/2 mb-10 md:mb-0"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-            >
+              transition={{ duration: 0.7 }}>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black">
                 Power Up with the Right UPS
               </h1>
@@ -82,14 +80,12 @@ const HomePage = () => {
               className="md:w-1/2"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
+              transition={{ duration: 0.7, delay: 0.2 }}>
               <div className="relative">
                 <img
                   className="w-64 md:w-80 rounded-lg shadow-2xl animate-float mx-32"
                   alt="UPS showcase"
-                  src="/assest/UPS.png"
-                />
+                  src="/assest/UPS.png"/>
                 <div className="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg">
                   <div className="text-purple-600 font-bold text-xl">UPS Experts</div>
                   <div className="text-gray-600">All services in one place</div>
@@ -108,8 +104,7 @@ const HomePage = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
             <h2 className="text-3xl font-bold mb-4">Our UPS Services</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               We make UPS buying and servicing easy and eco-friendly.
@@ -131,8 +126,7 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                viewport={{ once: true }}
-              >
+                viewport={{ once: true }}>
                 <div className="flex justify-center mb-4">{item.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                 <p className="text-gray-600">{item.desc}</p>
@@ -150,8 +144,7 @@ const HomePage = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
+              viewport={{ once: true }}>
               <h2 className="text-3xl font-bold">Featured UPS Models</h2>
               <p className="text-gray-600">Explore our top-selling units</p>
             </motion.div>
@@ -159,8 +152,7 @@ const HomePage = () => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
+              viewport={{ once: true }}>
               <Button asChild>
                 <Link to="/products" className="flex items-center">
                   View All <ArrowRight className="ml-2 h-4 w-4" />
@@ -174,8 +166,7 @@ const HomePage = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
             {featuredProducts.map((product, index) => (
               <div className="card-hover" key={product._id}>
                 <ProductCard product={product} index={index} />
@@ -193,16 +184,14 @@ const HomePage = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
             <h2 className="text-3xl font-bold mb-4">Join Our UPS Newsletter</h2>
             <p className="text-purple-200 mb-8">Stay updated on new UPS models, recycling rewards, and tips.</p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="px-4 py-3 rounded-lg flex-grow text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              />
+                className="px-4 py-3 rounded-lg flex-grow text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"/>
               <Button className="bg-white text-purple-900 hover:bg-purple-100">
                 Subscribe
               </Button>

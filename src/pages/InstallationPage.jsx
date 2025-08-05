@@ -82,31 +82,27 @@ const InstallationPage = () => {
           placeholder="Your full name"
           value={form.name}
           onChange={handleChange}
-          required
-        />
+          required/>
 
         <Input
           name="phone"
           placeholder="Mobile number (e.g. 9876543210)"
           value={form.phone}
           onChange={handleChange}
-          required
-        />
+          required/>
 
         <Input
           name="address"
           placeholder="Installation address"
           value={form.address}
           onChange={handleChange}
-          required
-        />
+          required/>
 
         <Textarea
           name="notes"
           placeholder="Additional notes (optional)"
           value={form.notes}
-          onChange={handleChange}
-        />
+          onChange={handleChange}/>
 
         <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Submit Request'}

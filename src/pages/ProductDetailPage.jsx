@@ -146,8 +146,7 @@ const ProductDetailPage = () => {
                       product.images?.length > 0
                         ? product.images[activeImageIndex]
                         : product.imageUrl || '/fallback.jpg'
-                    }
-                  />
+                    }/>
                 </motion.div>
               </AnimatePresence>
 

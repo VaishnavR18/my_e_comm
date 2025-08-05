@@ -89,8 +89,7 @@ const ProductsPage = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-8"
-        >
+          className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Explore UPS Systems</h1>
           <p className="text-gray-600">Reliable Power Backup for Every Need</p>
         </motion.div>
@@ -101,8 +100,7 @@ const ProductsPage = () => {
             <Button
               onClick={() => setIsFilterOpen(!isFilterOpen)}
               variant="outline"
-              className="w-full flex items-center justify-center"
-            >
+              className="w-full flex items-center justify-center">
               <Filter className="mr-2 h-4 w-4" />
               {isFilterOpen ? 'Hide Filters' : 'Show Filters'}
             </Button>
@@ -116,16 +114,14 @@ const ProductsPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="lg:w-1/4 bg-white p-6 rounded-lg shadow-md h-fit"
-              >
+                className="lg:w-1/4 bg-white p-6 rounded-lg shadow-md h-fit">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-semibold">Filters</h2>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={handleClearFilters}
-                    className="text-sm text-gray-500 hover:text-gray-700"
-                  >
+                    className="text-sm text-gray-500 hover:text-gray-700">
                     Clear All
                   </Button>
                 </div>
@@ -140,13 +136,11 @@ const ProductsPage = () => {
                       placeholder="Search UPS..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10"
-                    />
+                      className="pl-10"/>
                     {searchQuery && (
                       <button
                         onClick={() => setSearchQuery('')}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                      >
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2">
                         <X className="h-4 w-4 text-gray-400" />
                       </button>
                     )}
@@ -164,8 +158,7 @@ const ProductsPage = () => {
                           name="category"
                           className="mr-2"
                           checked={selectedCategory === category}
-                          onChange={() => setSelectedCategory(category)}
-                        />
+                          onChange={() => setSelectedCategory(category)}/>
                         {category}
                       </label>
                     ))}
@@ -182,16 +175,14 @@ const ProductsPage = () => {
                       onChange={(e) =>
                         setPriceRange({ ...priceRange, min: Number(e.target.value) })
                       }
-                      className="w-1/2"
-                    />
+                      className="w-1/2"/>
                     <Input
                       type="number"
                       value={priceRange.max}
                       onChange={(e) =>
                         setPriceRange({ ...priceRange, max: Number(e.target.value) })
                       }
-                      className="w-1/2"
-                    />
+                      className="w-1/2"/>
                   </div>
                 </div>
               </motion.div>
@@ -223,8 +214,7 @@ const ProductsPage = () => {
                     <select
                       value={sortOption}
                       onChange={(e) => setSortOption(e.target.value)}
-                      className="border rounded-md p-1 text-sm"
-                    >
+                      className="border rounded-md p-1 text-sm">
                       <option>Featured</option>
                       <option>Price: Low to High</option>
                       <option>Price: High to Low</option>
@@ -238,8 +228,7 @@ const ProductsPage = () => {
                     className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                     initial="hidden"
                     animate="visible"
-                    variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
-                  >
+                    variants={{ visible: { transition: { staggerChildren: 0.05 } } }}>
                     {filteredProducts.map((product, index) => (
                       <ProductCard key={product._id} product={product} index={index} />
                     ))}

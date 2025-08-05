@@ -27,18 +27,15 @@ const RegisterPage = () => {
         <input 
           type="text" placeholder="Name" value={name}
           onChange={(e) => setName(e.target.value)} required
-          className="w-full border p-2 rounded"
-        />
+          className="w-full border p-2 rounded"/>
         <input 
           type="email" placeholder="Email" value={email}
           onChange={(e) => setEmail(e.target.value)} required
-          className="w-full border p-2 rounded"
-        />
+          className="w-full border p-2 rounded"/>
         <input 
           type="password" placeholder="Password" value={password}
           onChange={(e) => setPassword(e.target.value)} required
-          className="w-full border p-2 rounded"
-        />
+          className="w-full border p-2 rounded"/>
         <button type="submit" className="w-full bg-green-600 text-white p-2 rounded">
           Register
         </button>

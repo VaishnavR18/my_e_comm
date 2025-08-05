@@ -133,17 +133,13 @@ const CheckoutPage = () => {
                     <ShippingForm
                       formData={formData}
                       handleChange={handleChange}
-                      onNextStep={handleNextStep}
-                    />
-                  )}
+                      onNextStep={handleNextStep}/>)}
                   {currentStep === 2 && (
                     <OrderReview
                       formData={formData}
                       handleSubmit={handleSubmitOrder}
                       onPrevStep={handlePrevStep}
-                      isSubmitting={isSubmitting}
-                    />
-                  )}
+                      isSubmitting={isSubmitting}/>)}
                 </div>
               </div>
 

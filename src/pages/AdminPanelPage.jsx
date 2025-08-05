@@ -130,8 +130,7 @@ const AdminPanelPage = () => {
           placeholder="Search by name or category"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border px-4 py-2 rounded w-full"
-        />
+          className="border px-4 py-2 rounded w-full"/>
       </div>
 
       {/* Add/Edit Product Form */}
@@ -158,8 +157,7 @@ const AdminPanelPage = () => {
               name="isRecommended"
               checked={form.isRecommended}
               onChange={handleChange}
-              className="mr-2"
-            />
+              className="mr-2"/>
             Mark as Smart Recommendation
           </label>
 
@@ -179,8 +177,7 @@ const AdminPanelPage = () => {
                     features: '', colors: '', isRecommended: false
                   });
                 }}
-                className="bg-gray-600 text-white px-4 py-2 rounded"
-              >
+                className="bg-gray-600 text-white px-4 py-2 rounded">
                 Cancel
               </button>
             )}

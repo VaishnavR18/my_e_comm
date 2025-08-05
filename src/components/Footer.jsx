@@ -15,8 +15,7 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">
               PowerPlus UPS
             </span>
@@ -41,8 +40,7 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
             <span className="text-lg font-semibold">Quick Links</span>
             <ul className="mt-4 space-y-2">
               <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
@@ -73,8 +71,7 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
             <span className="text-lg font-semibold">Contact Us</span>
             <address className="mt-4 not-italic space-y-4 text-gray-400">
               <div className="flex items-start">

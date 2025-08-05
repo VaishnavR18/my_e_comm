@@ -34,14 +34,12 @@ const UpsRecommender = () => {
           type="number"
           placeholder="Enter Total Load (in Watts)"
           value={load}
-          onChange={(e) => setLoad(e.target.value)}
-        />
+          onChange={(e) => setLoad(e.target.value)}/>
         <Input
           type="number"
           placeholder="Enter Backup Time Needed (in Hours)"
           value={backupTime}
-          onChange={(e) => setBackupTime(e.target.value)}
-        />
+          onChange={(e) => setBackupTime(e.target.value)}/>
         <Button type="submit" className="w-full">
           Recommend Battery
         </Button>
@@ -51,8 +49,7 @@ const UpsRecommender = () => {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
+          transition={{ duration: 0.4 }}>
           <Card className="p-6 space-y-2">
             <p><strong>Total Power Load:</strong> {result.watts} W</p>
             <p><strong>Backup Time:</strong> {result.hours} Hours</p>

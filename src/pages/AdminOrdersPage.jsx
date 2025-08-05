@@ -72,8 +72,7 @@ const AdminOrdersPage = () => {
                   <select
                     value={order.status}
                     onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                    className="ml-2 border rounded px-2"
-                  >
+                    className="ml-2 border rounded px-2">
                     <option>Processing</option>
                     <option>Shipped</option>
                     <option>Delivered</option>

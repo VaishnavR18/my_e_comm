@@ -12,8 +12,7 @@ const NotFoundPage = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+          transition={{ duration: 0.5 }}>
           <h1 className="text-9xl font-bold text-gray-200">404</h1>
           <h2 className="text-3xl font-bold mb-4">Page Not Found</h2>
           <p className="text-gray-600 mb-8 max-w-md mx-auto">

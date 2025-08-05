@@ -74,8 +74,7 @@ const ExchangeCalculatorPage = () => {
                   value={formData.productType}
                   onChange={handleChange}
                   required
-                  className="w-full border rounded px-3 py-2"
-                >
+                  className="w-full border rounded px-3 py-2">
                   <option value="">Select UPS type</option>
                   <option value="UPS - Home">UPS - Home</option>
                   <option value="UPS - Office">UPS - Office</option>
@@ -94,8 +93,7 @@ const ExchangeCalculatorPage = () => {
                   value={formData.age}
                   onChange={handleChange}
                   required
-                  className="w-full border rounded px-3 py-2"
-                />
+                  className="w-full border rounded px-3 py-2"/>
               </div>
 
               {/* Condition */}
@@ -106,8 +104,7 @@ const ExchangeCalculatorPage = () => {
                   value={formData.condition}
                   onChange={handleChange}
                   required
-                  className="w-full border rounded px-3 py-2"
-                >
+                  className="w-full border rounded px-3 py-2">
                   <option value="">Select condition</option>
                   <option value="Excellent">Excellent</option>
                   <option value="Good">Good</option>
@@ -125,8 +122,7 @@ const ExchangeCalculatorPage = () => {
                   accept="application/pdf,image/*"
                   onChange={handleChange}
                   required
-                  className="w-full"
-                />
+                  className="w-full"/>
               </div>
 
               {/* Upload UPS Photo */}
@@ -138,8 +134,7 @@ const ExchangeCalculatorPage = () => {
                   accept="image/*"
                   onChange={handleChange}
                   required
-                  className="w-full"
-                />
+                  className="w-full"/>
               </div>
 
               <Button type="submit" className="w-full">
@@ -155,8 +150,7 @@ const ExchangeCalculatorPage = () => {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-6 bg-blue-50 border border-blue-400 text-blue-800 px-4 py-4 rounded-lg text-center text-lg font-semibold"
-          >
+            className="mt-6 bg-blue-50 border border-blue-400 text-blue-800 px-4 py-4 rounded-lg text-center text-lg font-semibold">
             <DollarSign className="inline-block mr-1" />
             Estimated UPS Exchange Value: ₹{estimatedValue}
           </motion.div>

@@ -27,13 +27,13 @@ const RecyclingPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // 🧾 validate photo
+    // validate photo
     if (!formData.photo) {
       alert("Please upload a photo of your UPS.");
       return;
     }
 
-    // 🔄 Simulate backend
+    // Simulate backend
     console.log("Submitted Recycling Form:", formData);
     setSubmitted(true);
     setTimeout(() => {
@@ -60,8 +60,7 @@ const RecyclingPage = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-green-100 border border-green-400 text-green-800 px-4 py-6 rounded-lg"
-          >
+            className="bg-green-100 border border-green-400 text-green-800 px-4 py-6 rounded-lg">
             <CheckCircle className="inline-block mr-2" />
             Your recycling request was submitted successfully!
           </motion.div>
@@ -79,8 +78,7 @@ const RecyclingPage = () => {
                     onChange={handleChange}
                     required
                     className="w-full border rounded px-3 py-2"
-                    placeholder="e.g. Rahul Sharma"
-                  />
+                    placeholder="e.g. Rahul Sharma"/>
                 </div>
 
                 {/* Mobile Number */}
@@ -94,8 +92,7 @@ const RecyclingPage = () => {
                     required
                     pattern="[0-9]{10}"
                     className="w-full border rounded px-3 py-2"
-                    placeholder="e.g. 9876543210"
-                  />
+                    placeholder="e.g. 9876543210"/>
                 </div>
 
                 {/* Item (Only UPS/Inverter/Battery options) */}
@@ -106,8 +103,7 @@ const RecyclingPage = () => {
                     value={formData.item}
                     onChange={handleChange}
                     required
-                    className="w-full border rounded px-3 py-2"
-                  >
+                    className="w-full border rounded px-3 py-2">
                     <option value="">Select Type</option>
                     <option value="UPS - Home">UPS - Home</option>
                     <option value="UPS - Office">UPS - Office</option>
@@ -126,8 +122,7 @@ const RecyclingPage = () => {
                     onChange={handleChange}
                     required
                     className="w-full border rounded px-3 py-2"
-                    placeholder="e.g. Working, Damaged Battery"
-                  />
+                    placeholder="e.g. Working, Damaged Battery"/>
                 </div>
 
                 {/* Pickup Address */}
@@ -140,8 +135,7 @@ const RecyclingPage = () => {
                     required
                     className="w-full border rounded px-3 py-2"
                     rows={3}
-                    placeholder="Enter your full address for pickup"
-                  ></textarea>
+                    placeholder="Enter your full address for pickup"></textarea>
                 </div>
 
                 {/* Upload Photo */}
@@ -153,8 +147,7 @@ const RecyclingPage = () => {
                     accept="image/*"
                     onChange={handleChange}
                     required
-                    className="w-full"
-                  />
+                    className="w-full"/>
                 </div>
 
                 {/* Submit Button */}
