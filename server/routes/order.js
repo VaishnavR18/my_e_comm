@@ -4,7 +4,7 @@ const verifyToken = require('../middleware/authMiddleware');
 const isAdmin = require('../middleware/isAdmin');
 const Order = require('../models/Order');
 const User = require('../models/User');
-const sendMail = require('../utils/sendMail'); // ✅ import mail utility
+const sendMail = require('../utils/sendMail'); // 
 
 // Place a new order (user must be logged in)
 router.post('/place', verifyToken, async (req, res) => {
@@ -24,7 +24,7 @@ router.post('/place', verifyToken, async (req, res) => {
     // Find user
     const user = await User.findById(req.user.userId);
 
-    // ✉ Send order confirmation email
+    // Send order confirmation email
     await sendMail({
       to: user.email,
       subject: 'Your LuxeMarket Order Confirmation',

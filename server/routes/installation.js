@@ -31,9 +31,7 @@ router.post('/', verifyToken, async (req, res) => {
   }
 });
 
-// @desc    Get user's own installation requests
-// @route   GET /api/installation/mine
-// @access  Private
+
 router.get('/mine', verifyToken, async (req, res) => {
   try {
     const requests = await Installation.find({ user: req.user.userId }).sort({ createdAt: -1 });
