@@ -86,9 +86,9 @@ const HomePage = () => {
             >
               <div className="relative">
                 <img
-                  className="rounded-lg shadow-2xl mx-auto animate-float"
+                  className="w-64 md:w-80 rounded-lg shadow-2xl animate-float mx-32"
                   alt="UPS showcase"
-                  src="https://cdn.sketchfab.com/urls/3d-model-render.jpg"
+                  src="/assest/UPS.png"
                 />
                 <div className="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg">
                   <div className="text-purple-600 font-bold text-xl">UPS Experts</div>
